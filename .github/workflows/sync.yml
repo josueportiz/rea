@@ -3,7 +3,7 @@ name: Sync upstream
 on:
   schedule:
     # Runs daily at midnight UTC
-    - cron: '0 0 * * *'
+    - cron: "0 0 * * *"
   workflow_dispatch:
 
 jobs:
@@ -24,10 +24,10 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/morluto/rea.git
           git fetch upstream
-          
+
           # Detect the default branch (usually main or master)
           DEFAULT_BRANCH=$(git remote show upstream | sed -n '/HEAD branch/s/.*: //p')
-          
+
           git checkout $DEFAULT_BRANCH
           git merge --ff-only upstream/$DEFAULT_BRANCH
           git push origin $DEFAULT_BRANCH
